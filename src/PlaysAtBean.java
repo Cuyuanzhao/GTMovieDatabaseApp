@@ -6,6 +6,10 @@ import java.util.ArrayList;
  */
 public class PlaysAtBean {
     private ArrayList<String> nowPlaying = null;
+    /**
+     * get the nowPlaying movieTitle List;
+     * @return
+     */
     public ArrayList<String> getNowPlaying() {
         try {
             String sql = "SELECT DISTINCT Mtitle FROM PLAYS_AT WHERE Playing = 1";
@@ -20,4 +24,8 @@ public class PlaysAtBean {
         }
         return nowPlaying;
     }
+
+
+
+
 }

@@ -13,6 +13,7 @@ public class NowPlaying extends JFrame {
     private JPanel panel1;
     private JButton meButton;
     private JTable nowPlayingTable;
+    private DefaultTableModel dtm;
 
     public NowPlaying() {
         super("Now Playing");
@@ -22,6 +23,12 @@ public class NowPlaying extends JFrame {
         this.setLocation(Global.XPOS, Global.YPOS);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        dtm = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+        };
         /**
          * Initial the JTable
          */
@@ -31,7 +38,7 @@ public class NowPlaying extends JFrame {
         for (int i = 0; i < nowPlaying.size(); i++) {
             rows[i/2][i%2] = nowPlaying.get(i);
         }
-        DefaultTableModel dtm = new DefaultTableModel(rows, columnName);
+        dtm.setDataVector(rows, columnName);
         nowPlayingTable.setModel(dtm);
         nowPlayingTable.setCellSelectionEnabled(true);
 
@@ -52,7 +59,7 @@ public class NowPlaying extends JFrame {
             public void mousePressed(MouseEvent e) {
                 int row = nowPlayingTable.rowAtPoint(e.getPoint());
                 int col = nowPlayingTable.columnAtPoint(e.getPoint());
-                String Mtitle = (String)nowPlayingTable.getModel().getValueAt(row, col);
+                String Mtitle = (String)dtm.getValueAt(row, col);
                 System.out.println(Mtitle);
                 // TODO: 7/9/16 use the Mtitle initialize another page;
             }
@@ -62,10 +69,6 @@ public class NowPlaying extends JFrame {
 
     private void setVis(boolean b) {
         setVisible(b);
-    }
-
-    public static void main(String[] args) {
-        NowPlaying nowPlaying = new NowPlaying();
     }
 
 }

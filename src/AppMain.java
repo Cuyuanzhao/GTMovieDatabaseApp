@@ -6,9 +6,6 @@ import java.sql.*;
 public class AppMain {
 
     public static void main(String[] args) {
-
-
-        Singleton singleton = new Singleton();
-        LogIn logIn = singleton.getLogIn();
+        Singleton.getLogIn();
     }
 }

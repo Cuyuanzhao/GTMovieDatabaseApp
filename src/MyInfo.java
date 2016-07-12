@@ -23,6 +23,8 @@ public class MyInfo extends JFrame {
         myOrderHistoryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                Singleton.getOrderHistory().OrderHistoryInit();
                 // TODO: 7/9/16 Order history page; 
             }
         });

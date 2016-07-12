@@ -55,6 +55,7 @@ public class Register extends JFrame {
                             else {
                                 if (isMpasswordMatch()) {
                                     new ManagerBean().insert(newUser);
+                                    Global.setUsername(newUser.getUsername());
                                     // TODO: 7/9/16  
                                 }
                                 else {
