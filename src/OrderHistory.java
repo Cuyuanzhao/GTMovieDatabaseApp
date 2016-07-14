@@ -33,11 +33,11 @@ public class OrderHistory extends JFrame {
 
         orderTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dtm = new DefaultTableModel() {
-            /*@Override
+            @Override
             public boolean isCellEditable(int row, int col) {
-                if (col == 0) return true;
+//                if (col == 0) return true;
                 return false;
-            }*/
+            }
             @Override
             public Class getColumnClass(int col) {
                 if (col == 0)
@@ -75,7 +75,6 @@ public class OrderHistory extends JFrame {
                     setVis(false);
                     Singleton.getOrderDetail().OrderDetailInit(orderId);
                 }
-                // TODO: 7/11/16
             }
         });
         orderTable.addMouseListener(new MouseAdapter() {

@@ -1,34 +1,43 @@
+import java.sql.SQLException;
+
 /**
  * Created by cuyuan on 7/9/16.
  */
 public class SystemInfo {
-    private String mpassword;
-    private double cancelFee;
-    private double seniorDiscount;
-    private double childDiscount;
+    private static String mpassword;
+    private static double cancelFee;
+    private static double seniorDiscount;
+    private static double childDiscount;
 
-    public String getMpassword() {
+    public static String getMpassword() {
         return mpassword;
     }
-    public double getCancelFee() {
+
+    public static void setMpassword(String mpassword) {
+        SystemInfo.mpassword = mpassword;
+    }
+
+    public static double getCancelFee() {
         return cancelFee;
     }
-    public double getSeniorDiscount() {
+
+    public static void setCancelFee(double cancelFee) {
+        SystemInfo.cancelFee = cancelFee;
+    }
+
+    public static double getSeniorDiscount() {
         return seniorDiscount;
     }
-    public double getChildDiscount() {
+
+    public static void setSeniorDiscount(double seniorDiscount) {
+        SystemInfo.seniorDiscount = seniorDiscount;
+    }
+
+    public static double getChildDiscount() {
         return childDiscount;
     }
-    public void setMpassword(String m) {
-        mpassword = m;
-    }
-    public void setCancelFee(double c) {
-        cancelFee = c;
-    }
-    public void setSeniorDiscount(double s) {
-        seniorDiscount = s;
-    }
-    public void setChildDiscount(double c) {
-        childDiscount = c;
+
+    public static void setChildDiscount(double childDiscount) {
+        SystemInfo.childDiscount = childDiscount;
     }
 }

@@ -59,9 +59,9 @@ public class NowPlaying extends JFrame {
             public void mousePressed(MouseEvent e) {
                 int row = nowPlayingTable.rowAtPoint(e.getPoint());
                 int col = nowPlayingTable.columnAtPoint(e.getPoint());
-                String Mtitle = (String)dtm.getValueAt(row, col);
-                System.out.println(Mtitle);
-                // TODO: 7/9/16 use the Mtitle initialize another page;
+                String movieTitle = (String)dtm.getValueAt(row, col);
+                setVis(false);
+                Singleton.getMovieGui().MovieGuiInit(movieTitle);
             }
         });
 

@@ -25,7 +25,13 @@ public class PlaysAtBean {
         return nowPlaying;
     }
 
-
+/*    public ArrayList<PlaysAt> getNowPlaying(String movieTitle) {
+        ArrayList<PlaysAt> result = new ArrayList<PlaysAt>();
+        try {
+            String sql = "SELECT * FROM PLAYS_AT WHERE Playing = 1 ADN Mtitle = '" + movieTitle + "'";
+            Global.jrs.
+        }
+    }*/
 
 
 }

@@ -17,6 +17,18 @@ public class Global {
         try {
             Class.forName(DRIVER);
             jrs = new JdbcRowSetImpl(URL, USER, PASSWORD);
+            /**
+             * initial the system info;
+             */
+            String sql = "SELECT * FROM SYSTEM_INFO";
+            jrs.setCommand(sql);
+            jrs.execute();
+            if (jrs.next()) {
+                SystemInfo.setMpassword(Global.jrs.getString("Mpassword"));
+                SystemInfo.setCancelFee(Global.jrs.getDouble("Cancel_fee"));
+                SystemInfo.setChildDiscount(Global.jrs.getDouble("Child_discount"));
+                SystemInfo.setSeniorDiscount(Global.jrs.getDouble("Senior_discount"));
+            }
         } catch (SQLException | ClassNotFoundException exc) {
             exc.printStackTrace();
         }

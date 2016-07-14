@@ -8,11 +8,9 @@ import java.awt.event.ActionListener;
 public class OrderDetail extends JFrame {
 
     private JPanel panelRoot;
-    private JPanel panelMovie;
-    private JPanel panelTheaterLabel;
     private JButton cancelThisOrderButton;
     private JButton backButton;
-    private JLabel theaterName;
+    private JLabel theaterNameLabel;
     private JLabel streetLabal;
     private JLabel locationLabel;
     private JLabel totalCostLabel;
@@ -21,7 +19,13 @@ public class OrderDetail extends JFrame {
     private JLabel seniorTixLabel;
     private JLabel mtitleLabel;
     private JLabel typeLengthLabel;
-    private JLabel dataTimeLabel;
+    private JLabel dateLabel;
+    private JLabel timeLabel;
+    private int orderId = -1;
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
 
     public OrderDetail() {
         super("Order Detail");
@@ -34,7 +38,12 @@ public class OrderDetail extends JFrame {
         cancelThisOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                int option = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to cancel this order?", "Warning", option);
+                if (dialogResult == JOptionPane.YES_OPTION) {
+                    new OrdersBean().cancelOrder(orderId);
+                    cancelThisOrderButton.setVisible(false);
+                }
             }
         });
         backButton.addActionListener(new ActionListener() {
@@ -47,20 +56,40 @@ public class OrderDetail extends JFrame {
     }
 
     public void OrderDetailInit(int orderId) {
+        setOrderId(orderId);
+
         Orders order = new OrdersBean().getFromOrderId(orderId);
-        if (!order.getStatus().equals("unused")) {
+        if (order == null) return;
+        if (order.getStatus().equals("unused")) {
+            cancelThisOrderButton.setVisible(true);
+        }
+        else {
             cancelThisOrderButton.setVisible(false);
         }
-        totalCostLabel.setText("Total cost: " + String.valueOf(order.getTotalCost()));
-        adultTixLabel.setText(String.valueOf(order.getAdultTix()) + "Adult tickets");
-        childTixLabel.setText(String.valueOf(order.getChildTix()) + "Child tickets");
-        seniorTixLabel.setText(String.valueOf(order.getSeniorTix()) + "Senior tickets");
+        totalCostLabel.setText("Total cost: $" + String.valueOf(order.getTotalCost()));
+        adultTixLabel.setText(String.valueOf(order.getAdultTix()) + " Adult tickets");
+        childTixLabel.setText(String.valueOf(order.getChildTix()) + " Child tickets");
+        seniorTixLabel.setText(String.valueOf(order.getSeniorTix()) + " Senior tickets");
+        dateLabel.setText(order.getDate().toString());
+        timeLabel.setText(order.getTime().toString());
 
 
+        Movie movie = new MovieBean().getFromMovieTitle(order.getMovieTitle());
+        mtitleLabel.setText(movie.getMovieTitle());
+        typeLengthLabel.setText(movie.getGenre() + movie.getLength());
+
+
+        Theater theater = new TheaterBean().getFromTheaterId(order.getTheaterId());
+        theaterNameLabel.setText(theater.getName());
+        streetLabal.setText(theater.getStreet());
+        locationLabel.setText(theater.getCity() + ", " + theater.getState() + " " + theater.getZip());
 
         setVisible(true);
     }
 
+    public static void main(String[] args) {
+        Singleton.getOrderDetail().OrderDetailInit(1);
+    }
     private void setVis(boolean b) {
         setVisible(b);
     }

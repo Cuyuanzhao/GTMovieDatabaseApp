@@ -96,7 +96,6 @@ public class Register extends JFrame {
 
     private boolean isMpasswordMatch() {
         String mInput = new String(mPasswordField.getPassword());
-        String mPassword = new SystemInfoBean().getSystemInfo().getMpassword();
-        return mInput.equals(mPassword);
+        return mInput.equals(SystemInfo.getMpassword());
     }
 }

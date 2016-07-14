@@ -6,11 +6,41 @@ import java.util.ArrayList;
  * Created by cuyuan on 7/9/16.
  */
 public class OrdersBean {
-/*    private String orderId = null;
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }*/
+    public boolean canGiveReview(String username, String movieTitle) {
+        boolean result = false;
+        try {
+            String sql = "SELECT * FROM ORDERS WHERE Username = '" + username + "' AND MTitle = '" + movieTitle + "' AND Status = 'completed'";
+            Global.jrs.setCommand(sql);
+            Global.jrs.execute();
+            if (Global.jrs.next()) {
+                result = true;
+            }
+        } catch(SQLException exc) {
+            exc.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * cancel an order
+     * @param orderId
+     */
+    public void cancelOrder(int orderId) {
+        try {
+            String sql = "SELECT * FROM ORDERS WHERE Order_id = " + orderId;
+            Global.jrs.setCommand(sql);
+            Global.jrs.execute();
+            if (Global.jrs.next()) {
+                double totalCostAfterCancel = Global.jrs.getDouble("Total_cost") - SystemInfo.getCancelFee();
+                Global.jrs.updateDouble("Total_cost", totalCostAfterCancel);
+                Global.jrs.updateString("Status", "cancelled");
+                Global.jrs.updateRow();
+            }
+        } catch (SQLException exc) {
+            exc.printStackTrace();
+        }
+    }
 
     /**
      * return an order according to orderId;
@@ -20,7 +50,7 @@ public class OrdersBean {
     public Orders getFromOrderId(int orderId) {
         Orders result = null;
         try {
-            String sql = "SELECT * FROM ORDERS WHERE Order_id = " + orderId;
+            String sql = "SELECT * FROM ORDERS WHERE Order_id = " + orderId;// + " AND Username = '" + Global.getUsername() + "'";
             Global.jrs.setCommand(sql);
             Global.jrs.execute();
             if (Global.jrs.next()) {
