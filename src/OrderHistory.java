@@ -91,11 +91,6 @@ public class OrderHistory extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
-        Global.setUsername("cuyuanzhao");
-        OrderHistory orderHistory = new OrderHistory();
-        orderHistory.OrderHistoryInit();
-    }
     /**
      * Initial this orderHistoryTalbe;
      * need to intitial every time when goto this page;

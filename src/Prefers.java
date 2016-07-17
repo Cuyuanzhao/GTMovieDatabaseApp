@@ -1,7 +1,7 @@
 /**
  * Created by cuyuan on 7/14/16.
  */
-public class PreferTheater {
+public class Prefers {
     private String username;
     private String theaterId;
 

@@ -76,7 +76,7 @@ public class OrderDetail extends JFrame {
 
         Movie movie = new MovieBean().getFromMovieTitle(order.getMovieTitle());
         mtitleLabel.setText(movie.getMovieTitle());
-        typeLengthLabel.setText(movie.getGenre() + movie.getLength());
+        typeLengthLabel.setText(movie.getGenre() + " " + movie.getLength());
 
 
         Theater theater = new TheaterBean().getFromTheaterId(order.getTheaterId());
@@ -87,9 +87,6 @@ public class OrderDetail extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        Singleton.getOrderDetail().OrderDetailInit(1);
-    }
     private void setVis(boolean b) {
         setVisible(b);
     }

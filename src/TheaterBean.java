@@ -1,11 +1,29 @@
 import com.sun.rowset.JdbcRowSetImpl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Created by cuyuan on 7/12/16.
  */
 public class TheaterBean {
+
+    public ArrayList<Theater> getSearchTheater(String keyWord, String movieTitle) {
+        ArrayList<Theater> result = new ArrayList<Theater>();
+        try {
+            // TODO: 7/16/16 need to compare the showtime with current date;
+            String sql = "SELECT DISTINCT THEATER.Theater_id, Name, Street, City, State, Zip FROM THEATER JOIN PLAYS_AT ON THEATER.Theater_id = PLAYS_AT.Theater_id WHERE Playing = 1 AND MTitle = '" + movieTitle + "' AND (Name = '" + keyWord + "' OR City = '" + keyWord + "' OR State = '" + keyWord + "')";
+            Global.jrs.setCommand(sql);
+            Global.jrs.execute();
+            while (Global.jrs.next()) {
+                Theater theater = getFromRow(Global.jrs);
+                result.add(theater);
+            }
+        } catch (SQLException exc) {
+            exc.printStackTrace();
+        }
+        return result;
+    }
 
     public Theater getFromTheaterId (String theaterId) {
         Theater result = null;
@@ -36,4 +54,5 @@ public class TheaterBean {
         }
         return result;
     }
+
 }

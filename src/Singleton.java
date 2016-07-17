@@ -14,6 +14,10 @@ public class Singleton {
     private static OverviewGui overviewGui = null;
     private static ReviewGui reviewGui = null;
     private static GiveReviewGui giveReviewGui = null;
+    private static ChooseTheaterResult chooseTheaterResult = null;
+    private static SelectTime selectTime = null;
+    private static BuyTicketPayGui buyTicketPayGui = null;
+    private static BuyTicketConfirmGui buyTicketConfirmGui = null;
 
     public static LogIn getLogIn() {
         if (logIn == null) {
@@ -83,5 +87,33 @@ public class Singleton {
             giveReviewGui = new GiveReviewGui();
         }
         return giveReviewGui;
+    }
+
+    public static ChooseTheaterResult getChooseTheaterResult() {
+        if (chooseTheaterResult == null) {
+            chooseTheaterResult = new ChooseTheaterResult();
+        }
+        return chooseTheaterResult;
+    }
+
+    public static SelectTime getSelectTime() {
+        if (selectTime == null) {
+            selectTime = new SelectTime();
+        }
+        return selectTime;
+    }
+
+    public static BuyTicketPayGui getBuyTicketPayGui() {
+        if (buyTicketPayGui == null) {
+            buyTicketPayGui = new BuyTicketPayGui();
+        }
+        return buyTicketPayGui;
+    }
+
+    public static BuyTicketConfirmGui getBuyTicketConfirmGui() {
+        if (buyTicketConfirmGui == null) {
+            buyTicketConfirmGui = new BuyTicketConfirmGui();
+        }
+        return buyTicketConfirmGui;
     }
 }

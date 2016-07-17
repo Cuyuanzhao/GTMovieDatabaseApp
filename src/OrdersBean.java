@@ -1,11 +1,44 @@
 import com.sun.rowset.JdbcRowSetImpl;
 import java.sql.SQLException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
  * Created by cuyuan on 7/9/16.
  */
 public class OrdersBean {
+
+    public int insert(Orders order) {
+        int orderId = -1;
+        try {
+            String sql = "SELECT * FROM ORDERS";
+            Global.jrs.setCommand(sql);
+            Global.jrs.execute();
+            Global.jrs.moveToInsertRow();
+            Global.jrs.updateString("Username", order.getUsername());
+            Global.jrs.updateString("Mtitle", order.getMovieTitle());
+            Global.jrs.updateString("Theater_id", order.getTheaterId());
+            Global.jrs.updateString("Card_number", order.getCardNumber());
+            Global.jrs.updateString("Status", order.getStatus());
+            Global.jrs.updateDouble("Total_cost", order.getTotalCost());
+            Global.jrs.updateInt("AdultTix", order.getAdultTix());
+            Global.jrs.updateInt("SeniorTix", order.getSeniorTix());
+            Global.jrs.updateInt("ChildTix", order.getChildTix());
+            Global.jrs.updateDate("Date", order.getDate());
+            Global.jrs.updateTime("Time", order.getTime());
+            Global.jrs.insertRow();
+            Global.jrs.moveToCurrentRow();
+            String sql1 = "SELECT MAX(Order_id) FROM ORDERS";
+            Global.jrs.setCommand(sql1);
+            Global.jrs.execute();
+            if (Global.jrs.next()) {
+                orderId = Global.jrs.getInt(1);
+            }
+        } catch (SQLException exc) {
+            exc.printStackTrace();
+        }
+        return orderId;
+    }
 
     public boolean canGiveReview(String username, String movieTitle) {
         boolean result = false;
