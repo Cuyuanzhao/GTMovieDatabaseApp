@@ -26,7 +26,7 @@ public class MovieBean {
         Movie result = new Movie();
         try {
             result.setMovieTitle(jrs.getString("Mtitle"));
-            result.setCast(jrs.getString("Cast"));
+            result.setCast(jrs.getString("Movie_cast"));
             result.setGenre(jrs.getString("Genre"));
             result.setLength(jrs.getDouble("Movie_length"));
             result.setDate(jrs.getDate("Release_date"));

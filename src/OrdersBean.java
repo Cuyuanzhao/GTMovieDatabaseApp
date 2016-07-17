@@ -20,13 +20,13 @@ public class OrdersBean {
                 int j = 0;
                 while (Global.jrs.next()) {
                     if (j == 0) {
-                        result[i + j][0] = new DateFormatSymbols().getMonths()[Global.jrs.getInt("The_month") - 1];
+                        result[i*3 + j][0] = new DateFormatSymbols().getMonths()[Global.jrs.getInt("The_month") - 1];
                     }
                     else {
-                        result[i + j][0] = "";
+                        result[i*3 + j][0] = "";
                     }
-                    result[i + j][1] = Global.jrs.getString("Mtitle");
-                    result[i + j][2] = Global.jrs.getInt("Order_number");
+                    result[i*3 + j][1] = Global.jrs.getString("Mtitle");
+                    result[i*3 + j][2] = Global.jrs.getInt("Order_number");
                     j++;
                 }
             } catch (SQLException exc) {

@@ -5,9 +5,9 @@ import java.sql.*;
  */
 public class Global {
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost/cs4400_Team_28";
-    private static final String USER = "root";
-    private static final String PASSWORD = "219813";
+    private static final String URL = "jdbc:mysql://academic-mysql.cc.gatech.edu/cs4400_Team_28"; //"jdbc:mysql://localhost/cs4400_Team_28";
+    private static final String USER = "cs4400_Team_28"; //"root";
+    private static final String PASSWORD = "8iM4ZHfB";
     public static final int XPOS = 600;
     public static final int YPOS = 300;
     private static String Username;
