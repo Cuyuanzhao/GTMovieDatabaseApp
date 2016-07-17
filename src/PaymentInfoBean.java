@@ -10,6 +10,20 @@ import java.util.ArrayList;
  */
 public class PaymentInfoBean {
 
+    public void unSave(String cardNumber, String username) {
+        try {
+            String sql = "SELECT * FROM PAYMENT_INFO WHERE Saved = 1 AND Username = '" + username + "' AND Card_number = '" + cardNumber + "'";
+            Global.jrs.setCommand(sql);
+            Global.jrs.execute();
+            if (Global.jrs.next()) {
+                Global.jrs.updateBoolean("Saved", false);
+                Global.jrs.updateRow();
+            }
+        } catch (SQLException exc) {
+            exc.printStackTrace();
+        }
+    }
+
     public void insert(PaymentInfo paymentInfo) {
         try {
             String sql = "SELECT * FROM PAYMENT_INFO";

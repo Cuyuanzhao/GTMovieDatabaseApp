@@ -25,19 +25,20 @@ public class MyInfo extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 Singleton.getOrderHistory().OrderHistoryInit();
-                // TODO: 7/9/16 Order history page; 
             }
         });
         myPaymentInformationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: 7/9/16  payment info page;
+                setVis(false);
+                Singleton.getMyPaymentInfoGui().MyPaymentInfoGuiInit();
             }
         });
         myPreferredTheatersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: 7/9/16 preferred theaters page; 
+                setVis(false);
+                Singleton.getMyPreferredTheaterGui().MyPreferredTheaterGuiInit();
             }
         });
         backButton.addActionListener(new ActionListener() {

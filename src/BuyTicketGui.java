@@ -143,9 +143,4 @@ public class BuyTicketGui extends JFrame{
         this.totalCost = totalCost;
     }
 
-    public static void main(String[] args) {
-        new SystemInfoBean().getSystemInfo();
-        Global.setUsername("cuyuanzhao");
-        new BuyTicketGui().BuyTicketGuiInit("Iron man", "2", Timestamp.valueOf("2016-07-16 11:40:44.0"));
-    }
 }

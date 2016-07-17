@@ -48,7 +48,8 @@ public class MovieGui extends JFrame {
         buyTicketsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                setVis(false);
+                Singleton.getChooseTheaterGui().ChooseTheaterGuiInit(movieTitle);
             }
         });
         backButton.addActionListener(new ActionListener() {
@@ -93,7 +94,4 @@ public class MovieGui extends JFrame {
         this.movie = movie;
     }
 
-    public static void main(String[] args) {
-        new MovieGui().MovieGuiInit("Iron man");
-    }
 }

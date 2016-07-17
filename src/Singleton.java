@@ -14,10 +14,14 @@ public class Singleton {
     private static OverviewGui overviewGui = null;
     private static ReviewGui reviewGui = null;
     private static GiveReviewGui giveReviewGui = null;
+    private static ChooseTheaterGui chooseTheaterGui = null;
     private static ChooseTheaterResult chooseTheaterResult = null;
     private static SelectTime selectTime = null;
+    private static BuyTicketGui buyTicketGui = null;
     private static BuyTicketPayGui buyTicketPayGui = null;
     private static BuyTicketConfirmGui buyTicketConfirmGui = null;
+    private static MyPaymentInfoGui myPaymentInfoGui = null;
+    private static MyPreferredTheaterGui myPreferredTheaterGui = null;
 
     public static LogIn getLogIn() {
         if (logIn == null) {
@@ -89,6 +93,13 @@ public class Singleton {
         return giveReviewGui;
     }
 
+    public static ChooseTheaterGui getChooseTheaterGui() {
+        if (chooseTheaterGui == null) {
+            chooseTheaterGui = new ChooseTheaterGui();
+        }
+        return chooseTheaterGui;
+    }
+
     public static ChooseTheaterResult getChooseTheaterResult() {
         if (chooseTheaterResult == null) {
             chooseTheaterResult = new ChooseTheaterResult();
@@ -103,6 +114,13 @@ public class Singleton {
         return selectTime;
     }
 
+    public static BuyTicketGui getBuyTicketGui() {
+        if (buyTicketGui == null) {
+            buyTicketGui = new BuyTicketGui();
+        }
+        return buyTicketGui;
+    }
+
     public static BuyTicketPayGui getBuyTicketPayGui() {
         if (buyTicketPayGui == null) {
             buyTicketPayGui = new BuyTicketPayGui();
@@ -115,5 +133,19 @@ public class Singleton {
             buyTicketConfirmGui = new BuyTicketConfirmGui();
         }
         return buyTicketConfirmGui;
+    }
+
+    public static MyPaymentInfoGui getMyPaymentInfoGui() {
+        if (myPaymentInfoGui == null) {
+            myPaymentInfoGui = new MyPaymentInfoGui();
+        }
+        return myPaymentInfoGui;
+    }
+
+    public static MyPreferredTheaterGui getMyPreferredTheaterGui() {
+        if (myPreferredTheaterGui == null) {
+            myPreferredTheaterGui = new MyPreferredTheaterGui();
+        }
+        return myPreferredTheaterGui;
     }
 }

@@ -52,7 +52,7 @@ public class GiveReviewGui extends JFrame {
 
     public void GiveReviewGuiInit(String movieTitle) {
         setMovieTitle(movieTitle);
-
+        movieTitleLabel.setText(movieTitle);
         setVis(true);
     }
 

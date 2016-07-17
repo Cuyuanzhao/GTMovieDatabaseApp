@@ -44,6 +44,7 @@ public class BuyTicketPayGui extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 order.setCardNumber(savedCardComboBox.getSelectedItem().toString());
                 order.setOrderId(new OrdersBean().insert(order));
+                setVis(false);
                 Singleton.getBuyTicketConfirmGui().BuyTicketConfirmGuiInit(movie, theater, order);
             }
         });

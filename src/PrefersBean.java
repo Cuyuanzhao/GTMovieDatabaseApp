@@ -6,6 +6,37 @@ import java.util.ArrayList;
  */
 public class PrefersBean {
 
+    public void delete(Prefers prefers) {
+        try {
+            String sql = "SELECT * FROM PREFERS WHERE Username = '" + prefers.getUsername() + "' AND Theater_id = '"  +prefers.getTheaterId() + "'";
+            Global.jrs.setCommand(sql);
+            Global.jrs.execute();
+            if (Global.jrs.next()) {
+                Global.jrs.deleteRow();
+            }
+        } catch (SQLException exc) {
+            exc.printStackTrace();
+        }
+    }
+
+    public ArrayList<Prefers> getFromUsername(String username) {
+        ArrayList<Prefers> result = new ArrayList<Prefers>();
+        try {
+            String sql = "SELECT Theater_id FROM PREFERS WHERE Username = '" + username + "'";
+            Global.jrs.setCommand(sql);
+            Global.jrs.execute();
+            while (Global.jrs.next()) {
+                Prefers temp = new Prefers();
+                temp.setUsername(username);
+                temp.setTheaterId(Global.jrs.getString("Theater_id"));
+                result.add(temp);
+            }
+        } catch (SQLException exc) {
+            exc.printStackTrace();
+        }
+        return result;
+    }
+
     public void insert(Prefers prefers) {
         try {
             String sql = "SELECT * FROM PREFERS WHERE Username = '" + prefers.getUsername() + "' AND Theater_id = '" + prefers.getTheaterId() + "'";

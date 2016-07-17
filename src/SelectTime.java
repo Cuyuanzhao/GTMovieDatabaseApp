@@ -36,8 +36,8 @@ public class SelectTime extends JFrame {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: 7/15/16 @showTime @movieTitle @theaterId;
-                System.out.println(showTime + ", " + movieTitle + ", " + theaterId);
+                setVis(false);
+                Singleton.getBuyTicketGui().BuyTicketGuiInit(movieTitle, theaterId, showTime);
             }
         });
     }
