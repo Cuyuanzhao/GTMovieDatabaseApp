@@ -1,12 +1,58 @@
 import com.sun.rowset.JdbcRowSetImpl;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by cuyuan on 7/9/16.
  */
 public class OrdersBean {
+
+    public Object[][] getPopularMovie() {
+        Object[][] result = new Object[9][3];
+        for (int i = 0; i < 3; i++) {
+            try {
+                String sql = "SELECT MONTH(DATE_SUB(NOW(), INTERVAL " + i  + " MONTH)) AS The_month, Mtitle, COUNT(*) AS Order_number FROM ORDERS WHERE Status = 'completed' AND Date > LAST_DAY(DATE_SUB(NOW(), INTERVAL " + (i + 1) + " MONTH)) AND Date <= LAST_DAY(DATE_SUB(NOW(), INTERVAL " + i + " MONTH)) GROUP BY Mtitle ORDER BY Order_number DESC LIMIT 3";
+                Global.jrs.setCommand(sql);
+                Global.jrs.execute();
+                int j = 0;
+                while (Global.jrs.next()) {
+                    if (j == 0) {
+                        result[i + j][0] = new DateFormatSymbols().getMonths()[Global.jrs.getInt("The_month") - 1];
+                    }
+                    else {
+                        result[i + j][0] = "";
+                    }
+                    result[i + j][1] = Global.jrs.getString("Mtitle");
+                    result[i + j][2] = Global.jrs.getInt("Order_number");
+                    j++;
+                }
+            } catch (SQLException exc) {
+                exc.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    public Object[][] getRevenueReport() {
+        Object[][] result = new Object[3][2];
+        for (int i = 0; i < 3; i++) {
+            try {
+                String sql = "SELECT MONTH(DATE_SUB(NOW(), INTERVAL " + i  + " MONTH)) AS The_month, SUM(Total_cost) AS Revenue FROM ORDERS WHERE Status = 'completed' AND Date > LAST_DAY(DATE_SUB(NOW(), INTERVAL " + (i + 1) + " MONTH)) AND Date <= LAST_DAY(DATE_SUB(NOW(), INTERVAL " + i + " MONTH))";
+                Global.jrs.setCommand(sql);
+                Global.jrs.execute();
+                if (Global.jrs.next()) {
+                    result[i][0] = new DateFormatSymbols().getMonths()[Global.jrs.getInt("The_month") - 1];
+                    result[i][1] = "$" + Global.jrs.getInt("Revenue");
+                }
+            } catch (SQLException exc) {
+                exc.printStackTrace();
+            }
+        }
+        return result;
+    }
 
     public int insert(Orders order) {
         int orderId = -1;

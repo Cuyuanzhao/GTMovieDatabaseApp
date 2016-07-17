@@ -43,9 +43,8 @@ public class LogIn extends JFrame{
                         Singleton.getNowPlaying().setVisible(true);
                     }
                     else if (new ManagerBean().isValid(u)) {
-                        System.out.println("manager id");
                         setVis(false);
-                        // TODO: 7/8/16 go to Manager page;
+                        Singleton.getManagerGui().setVisible(true);
                     }
                     else {
                         JOptionPane.showMessageDialog(null, "The Username or Password are wrong");

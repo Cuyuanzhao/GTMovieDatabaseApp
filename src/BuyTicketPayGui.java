@@ -96,7 +96,6 @@ public class BuyTicketPayGui extends JFrame{
     
     private DefaultComboBoxModel<String> getDateMode(ArrayList<PaymentInfo> paymentInfos) {
         String[] data = new String[paymentInfos.size()];
-        System.out.println(Global.getUsername() + " "  + data.length);
         for (int i = 0; i < data.length; i++) {
             data[i] = paymentInfos.get(i).getCardNumber();
         }

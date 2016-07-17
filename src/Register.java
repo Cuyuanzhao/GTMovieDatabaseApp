@@ -50,13 +50,14 @@ public class Register extends JFrame {
                             if (isEmptyMpassword()) {
                                 new CustomerBean().insert(newUser);
                                 Global.setUsername(newUser.getUsername());
-                                // TODO: 7/9/16  
+                                Singleton.getNowPlaying().setVisible(true);
                             }
                             else {
                                 if (isMpasswordMatch()) {
                                     new ManagerBean().insert(newUser);
                                     Global.setUsername(newUser.getUsername());
-                                    // TODO: 7/9/16  
+                                    setVis(false);
+                                    Singleton.getManagerGui().setVisible(true);
                                 }
                                 else {
                                     JOptionPane.showMessageDialog(null, "The manager password is wrong!");

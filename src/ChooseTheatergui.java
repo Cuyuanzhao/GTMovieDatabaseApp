@@ -47,7 +47,6 @@ public class ChooseTheaterGui extends JFrame{
                     else {
                         setVis(false);
                         Singleton.getChooseTheaterResult().ChooseTheaterResultInit(searchResult, movieTitle);
-                        // TODO: 7/14/16 arguments: @searchResult @movieTitle;
                     }
                 }
             }
@@ -93,11 +92,4 @@ public class ChooseTheaterGui extends JFrame{
         this.theaterIdArray = theaterIdArray;
     }
 
-
-
-
-    public static void main(String[] args) {
-        Global.setUsername("cuyuanzhao");
-        new ChooseTheaterGui().ChooseTheaterGuiInit("Iron man");
-    }
 }

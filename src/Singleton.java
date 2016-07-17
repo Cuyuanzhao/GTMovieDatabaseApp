@@ -22,6 +22,9 @@ public class Singleton {
     private static BuyTicketConfirmGui buyTicketConfirmGui = null;
     private static MyPaymentInfoGui myPaymentInfoGui = null;
     private static MyPreferredTheaterGui myPreferredTheaterGui = null;
+    private static ManagerGui managerGui = null;
+    private static RevenueReportGui revenueReportGui = null;
+    private static PopularMovieGui popularMovieGui = null;
 
     public static LogIn getLogIn() {
         if (logIn == null) {
@@ -147,5 +150,26 @@ public class Singleton {
             myPreferredTheaterGui = new MyPreferredTheaterGui();
         }
         return myPreferredTheaterGui;
+    }
+
+    public static ManagerGui getManagerGui() {
+        if (managerGui == null) {
+            managerGui = new ManagerGui();
+        }
+        return managerGui;
+    }
+
+    public static RevenueReportGui getRevenueReportGui() {
+        if (revenueReportGui == null) {
+            revenueReportGui = new RevenueReportGui();
+        }
+        return revenueReportGui;
+    }
+
+    public static PopularMovieGui getPopularMovieGui() {
+        if (popularMovieGui == null) {
+            popularMovieGui = new PopularMovieGui();
+        }
+        return popularMovieGui;
     }
 }
