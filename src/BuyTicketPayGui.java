@@ -97,8 +97,6 @@ public class BuyTicketPayGui extends JFrame{
         streetLable.setText(theater.getStreet());
         addressLabel.setText(theater.getCity() + ", " + theater.getState() + " " + theater.getZip());
 
-
-
         setVis(true);
     }
     
@@ -116,7 +114,7 @@ public class BuyTicketPayGui extends JFrame{
     }
 
     private void setVis(boolean b) {
-        setVisible(true);
+        setVisible(b);
     }
 
     public void setOrder(Orders order) {
