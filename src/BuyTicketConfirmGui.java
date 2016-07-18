@@ -19,6 +19,8 @@ public class BuyTicketConfirmGui extends JFrame{
         this.pack();
         this.setLocation(Global.XPOS, Global.YPOS);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(380, 220);
+
     }
 
     public void BuyTicketConfirmGuiInit(Movie movie, Theater theater, Orders order) {

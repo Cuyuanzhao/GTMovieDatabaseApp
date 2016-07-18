@@ -21,7 +21,7 @@ public class SelectTime extends JFrame {
     private JLabel genreLabel;
     private JPanel[] tabPanels;
 
-    private Timestamp showTime;
+    private Timestamp showTime = null;
     private String movieTitle;
     private String theaterId;
 
@@ -36,8 +36,10 @@ public class SelectTime extends JFrame {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVis(false);
-                Singleton.getBuyTicketGui().BuyTicketGuiInit(movieTitle, theaterId, showTime);
+                if (showTime != null) {
+                    setVis(false);
+                    Singleton.getBuyTicketGui().BuyTicketGuiInit(movieTitle, theaterId, showTime);
+                }
             }
         });
     }

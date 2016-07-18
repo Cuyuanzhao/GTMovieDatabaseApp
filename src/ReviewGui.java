@@ -27,6 +27,7 @@ public class ReviewGui extends JFrame {
         this.pack();
         this.setLocation(Global.XPOS, Global.YPOS);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(500, 350);
         dtm = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int col) {
