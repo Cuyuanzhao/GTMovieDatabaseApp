@@ -59,16 +59,17 @@ public class BuyTicketPayGui extends JFrame{
                 }
                 else {
                     if (Date.valueOf(expDateTextField.getText()).after(new Date(Calendar.getInstance().getTimeInMillis()))) {
+                        PaymentInfo paymentInfo = new PaymentInfo();
+                        paymentInfo.setUsername(Global.getUsername());
+                        paymentInfo.setHolder(holderTextField.getText());
+                        paymentInfo.setCardNumber(cardNumberTextField.getText());
+                        paymentInfo.setCvv(cvvTextField.getText());
+                        paymentInfo.setSaved(false);
+                        paymentInfo.setExpDate(Date.valueOf(expDateTextField.getText()));
                         if (saveThisCardForCheckBox.isSelected()) {
-                            PaymentInfo paymentInfo = new PaymentInfo();
-                            paymentInfo.setUsername(Global.getUsername());
-                            paymentInfo.setHolder(holderTextField.getText());
-                            paymentInfo.setCardNumber(cardNumberTextField.getText());
-                            paymentInfo.setCvv(cvvTextField.getText());
                             paymentInfo.setSaved(true);
-                            paymentInfo.setExpDate(Date.valueOf(expDateTextField.getText()));
-                            new PaymentInfoBean().insert(paymentInfo);
                         }
+                        new PaymentInfoBean().insert(paymentInfo);
                         order.setCardNumber(cardNumberTextField.getText());
                         order.setOrderId(new OrdersBean().insert(order));
                         setVis(false);

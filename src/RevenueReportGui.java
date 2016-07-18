@@ -19,6 +19,7 @@ public class RevenueReportGui extends JFrame{
         this.pack();
         this.setLocation(Global.XPOS, Global.YPOS);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(300, 300);
 
         Object[] col = {"Month", "Revenue"};
         Object[][] row = new OrdersBean().getRevenueReport();

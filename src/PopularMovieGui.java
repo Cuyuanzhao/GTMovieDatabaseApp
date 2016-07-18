@@ -19,6 +19,8 @@ public class PopularMovieGui extends JFrame {
         this.pack();
         this.setLocation(Global.XPOS, Global.YPOS);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(300, 300);
+
         Object[] col = {"Month", "Movie Title", "#of Orders"};
         Object[][] row = new OrdersBean().getPopularMovie();
         popularMovieTable.setModel(new DefaultTableModel(row, col));
