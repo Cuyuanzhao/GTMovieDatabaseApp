@@ -1,9 +1,12 @@
+import jdk.nashorn.internal.scripts.JO;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 /**
@@ -52,24 +55,29 @@ public class BuyTicketPayGui extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (isEmpty()) {
-                    // TODO: 7/16/16 check expdate > currentdate;
                     JOptionPane.showMessageDialog(null, "Please provide a valid credit card!");
                 }
                 else {
-                    if (saveThisCardForCheckBox.isSelected()) {
-                        PaymentInfo paymentInfo = new PaymentInfo();
-                        paymentInfo.setUsername(Global.getUsername());
-                        paymentInfo.setHolder(holderTextField.getText());
-                        paymentInfo.setCardNumber(cardNumberTextField.getText());
-                        paymentInfo.setCvv(cvvTextField.getText());
-                        paymentInfo.setSaved(true);
-                        paymentInfo.setExpDate(Date.valueOf(expDateTextField.getText()));
-                        new PaymentInfoBean().insert(paymentInfo);
+                    if (Date.valueOf(expDateTextField.getText()).after(new Date(Calendar.getInstance().getTimeInMillis()))) {
+                        if (saveThisCardForCheckBox.isSelected()) {
+                            PaymentInfo paymentInfo = new PaymentInfo();
+                            paymentInfo.setUsername(Global.getUsername());
+                            paymentInfo.setHolder(holderTextField.getText());
+                            paymentInfo.setCardNumber(cardNumberTextField.getText());
+                            paymentInfo.setCvv(cvvTextField.getText());
+                            paymentInfo.setSaved(true);
+                            paymentInfo.setExpDate(Date.valueOf(expDateTextField.getText()));
+                            new PaymentInfoBean().insert(paymentInfo);
+                        }
+                        order.setCardNumber(cardNumberTextField.getText());
+                        order.setOrderId(new OrdersBean().insert(order));
+                        setVis(false);
+                        Singleton.getBuyTicketConfirmGui().BuyTicketConfirmGuiInit(movie, theater, order);
                     }
-                    order.setCardNumber(cardNumberTextField.getText());
-                    order.setOrderId(new OrdersBean().insert(order));
-                    setVis(false);
-                    Singleton.getBuyTicketConfirmGui().BuyTicketConfirmGuiInit(movie, theater, order);
+                    else {
+                        JOptionPane.showMessageDialog(null, "This card has expired!");
+                    }
+
                 }
             }
         });

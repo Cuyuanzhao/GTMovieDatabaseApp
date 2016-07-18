@@ -40,6 +40,9 @@ public class SelectTime extends JFrame {
                     setVis(false);
                     Singleton.getBuyTicketGui().BuyTicketGuiInit(movieTitle, theaterId, showTime);
                 }
+                else {
+                    JOptionPane.showMessageDialog(null, "Please select a show time!");
+                }
             }
         });
     }
@@ -68,7 +71,6 @@ public class SelectTime extends JFrame {
         int currentDay = new Date().getDate();
         for (Timestamp ts: showTimeArray) {
             int dayDiff = ts.getDate() - currentDay;
-            System.out.println(dayDiff);
             if (dayDiff >= 0 && dayDiff < 7) {
                 JButton newButton = new JButton(ts.getHours() + ":" + ts.getMinutes());
                 newButton.addActionListener(new ActionListener(){
@@ -77,7 +79,8 @@ public class SelectTime extends JFrame {
                      * @param e
                      */
                     @Override
-                    public void actionPerformed(ActionEvent e) {
+                    public void actionPerformed(ActionEvent e)
+                    {
                         setShowTime(ts);// how could it be possible
                     }
                 });
