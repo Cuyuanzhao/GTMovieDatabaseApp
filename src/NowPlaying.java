@@ -22,6 +22,7 @@ public class NowPlaying extends JFrame {
         this.pack();
         this.setLocation(Global.XPOS, Global.YPOS);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(300, 300);
 
         dtm = new DefaultTableModel() {
             @Override

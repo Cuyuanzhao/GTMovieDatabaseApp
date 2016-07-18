@@ -31,7 +31,7 @@ public class SelectTime extends JFrame {
         this.pack();
         this.setLocation(Global.XPOS, Global.YPOS);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(400, 600);
+        this.setSize(400, 400);
 
         nextButton.addActionListener(new ActionListener() {
             @Override

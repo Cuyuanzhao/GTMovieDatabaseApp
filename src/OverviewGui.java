@@ -19,7 +19,7 @@ public class OverviewGui extends JFrame{
         this.pack();
         this.setLocation(Global.XPOS, Global.YPOS);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 350);
+        this.setSize(450, 350);
         synopsisTextPane.setEditable(false);
         castTextPane.setEditable(false);
 
