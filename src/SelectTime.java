@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.Timestamp;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -68,9 +69,9 @@ public class SelectTime extends JFrame {
             tabPanels[i] = new JPanel(new FlowLayout());
         }
         ArrayList<Timestamp> showTimeArray = new PlaysAtBean().getShowTime(movieTitle, theaterId);
-        int currentDay = new Date().getDate();
+        int currentDay = (int)(new Date().getTime())/(1000*60*60*24);
         for (Timestamp ts: showTimeArray) {
-            int dayDiff = ts.getDate() - currentDay;
+            int dayDiff = (int)(ts.getTime())/(1000*60*60*24) - currentDay;
             if (dayDiff >= 0 && dayDiff < 7) {
                 JButton newButton = new JButton(ts.getHours() + ":" + ts.getMinutes());
                 newButton.addActionListener(new ActionListener(){
@@ -81,6 +82,7 @@ public class SelectTime extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e)
                     {
+                        System.out.println(ts);
                         setShowTime(ts);// how could it be possible
                     }
                 });
