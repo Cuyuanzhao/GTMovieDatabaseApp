@@ -102,7 +102,7 @@ public class BuyTicketGui extends JFrame{
         order.setTime(new Time(showTime.getTime()));
 
         movieTitleLabel.setText(movieTitle);
-        ratingLengthLabel.setText(movie.getRating() + ", " + movie.getLength());
+        ratingLengthLabel.setText(movie.getRating() + ", " + Global.getMovieLenghString((int)movie.getLength()));
         showTimeLabel.setText(showTime.toString());
 
         theaterNameLabel.setText(theater.getName());

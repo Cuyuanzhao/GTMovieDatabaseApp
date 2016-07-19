@@ -69,9 +69,9 @@ public class MovieGui extends JFrame {
         setMovie(movie);
         movieTitleLabel.setText(movie.getMovieTitle());
         releaseDateLabel.setText(movie.getDate().toString());
-        ratingLengthLabel.setText(movie.getRating() + ", " + movie.getLength());
+        ratingLengthLabel.setText(movie.getRating() + ", " + Global.getMovieLenghString((int)movie.getLength()));
         genrelLabel.setText(movie.getGenre());
-        avgRatingLabel.setText("Average Score: " + movie.getAvgRating());
+        avgRatingLabel.setText("Average Rating: " + movie.getAvgRating());
         reviewCountLabel.setText("" + (new ReviewBean().getCountFromMtitle(movieTitle)) + " Fan Ratings");
 
         setVisible(true);

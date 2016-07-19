@@ -53,7 +53,7 @@ public class SelectTime extends JFrame {
 
         Movie movie = new MovieBean().getFromMovieTitle(movieTitle);
         movieTitleLabel.setText(movie.getMovieTitle());
-        ratingLengthLabel.setText("Rating: " + movie.getRating() + " Length: " + movie.getLength());
+        ratingLengthLabel.setText(movie.getRating() + ", " + Global.getMovieLenghString((int)movie.getLength()));
         genreLabel.setText("Genre: " + movie.getGenre());
         setTabPanels();
         setTabbedPane();

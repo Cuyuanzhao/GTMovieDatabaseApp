@@ -25,7 +25,7 @@ public class BuyTicketConfirmGui extends JFrame{
 
     public void BuyTicketConfirmGuiInit(Movie movie, Theater theater, Orders order) {
         movieTitleLabel.setText(movie.getMovieTitle());
-        ratingLengthLabel.setText(movie.getRating() + ", " + movie.getLength());
+        ratingLengthLabel.setText(movie.getRating() + ", " + Global.getMovieLenghString((int)movie.getLength()));
         showTimeLabel.setText(order.getDate() + " " + order.getTime());
         theaterNameLabel.setText(theater.getName());
         streetLable.setText(theater.getStreet());

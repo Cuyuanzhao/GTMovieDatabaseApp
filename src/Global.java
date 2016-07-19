@@ -41,4 +41,11 @@ public class Global {
     public static void setUsername(String username) {
         Username = username;
     }
+
+    public static String getMovieLenghString(int length) {
+        int hour = length/60;
+        int min = length%60;
+        return hour + " hr " + min + " min";
+
+    }
 }
