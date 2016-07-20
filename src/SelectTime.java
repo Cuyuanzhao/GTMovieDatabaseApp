@@ -55,7 +55,7 @@ public class SelectTime extends JFrame {
         Movie movie = new MovieBean().getFromMovieTitle(movieTitle);
         movieTitleLabel.setText(movie.getMovieTitle());
         ratingLengthLabel.setText(movie.getRating() + ", " + Global.getMovieLenghString((int)movie.getLength()));
-        genreLabel.setText("Genre: " + movie.getGenre());
+        genreLabel.setText(movie.getGenre());
         setTabPanels();
         setTabbedPane();
         setVis(true);
@@ -69,9 +69,12 @@ public class SelectTime extends JFrame {
             tabPanels[i] = new JPanel(new FlowLayout());
         }
         ArrayList<Timestamp> showTimeArray = new PlaysAtBean().getShowTime(movieTitle, theaterId);
-        int currentDay = (int)(new Date().getTime())/(1000*60*60*24);
+        Date currentDay = new Date();
+        currentDay.setHours(0);
+        currentDay.setMinutes(0);
+        currentDay.setSeconds(0);
         for (Timestamp ts: showTimeArray) {
-            int dayDiff = (int)(ts.getTime())/(1000*60*60*24) - currentDay;
+            int dayDiff = (int)((ts.getTime() - currentDay.getTime())/(1000*3600*24));
             if (dayDiff >= 0 && dayDiff < 7) {
                 JButton newButton = new JButton(ts.getHours() + ":" + ts.getMinutes());
                 newButton.addActionListener(new ActionListener(){
@@ -82,7 +85,6 @@ public class SelectTime extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e)
                     {
-                        System.out.println(ts);
                         setShowTime(ts);// how could it be possible
                     }
                 });

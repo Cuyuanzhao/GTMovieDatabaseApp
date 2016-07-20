@@ -129,7 +129,7 @@ public class OrdersBean {
     public Orders getFromOrderId(int orderId) {
         Orders result = null;
         try {
-            String sql = "SELECT * FROM ORDERS WHERE Order_id = " + orderId;// + " AND Username = '" + Global.getUsername() + "'";
+            String sql = "SELECT * FROM ORDERS WHERE Order_id = " + orderId + " AND Username = '" + Global.getUsername() + "'";
             Global.jrs.setCommand(sql);
             Global.jrs.execute();
             if (Global.jrs.next()) {

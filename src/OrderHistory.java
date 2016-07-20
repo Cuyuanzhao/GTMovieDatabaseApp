@@ -35,7 +35,6 @@ public class OrderHistory extends JFrame {
         dtm = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int col) {
-//                if (col == 0) return true;
                 return false;
             }
             @Override
@@ -83,7 +82,7 @@ public class OrderHistory extends JFrame {
                 super.mousePressed(e);
                 int row = orderTable.rowAtPoint(e.getPoint());
                 orderId = (int)dtm.getValueAt(row, 1);
-                if (preRow != -1)
+                if (preRow != -1 && preRow < orderTable.getRowCount())
                     dtm.setValueAt(false, preRow, 0);
                 dtm.setValueAt(true, row, 0);
                 preRow = row;

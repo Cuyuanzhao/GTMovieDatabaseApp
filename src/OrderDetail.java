@@ -76,7 +76,7 @@ public class OrderDetail extends JFrame {
 
         Movie movie = new MovieBean().getFromMovieTitle(order.getMovieTitle());
         mtitleLabel.setText(movie.getMovieTitle());
-        typeLengthLabel.setText(movie.getGenre() + " " + movie.getLength());
+        typeLengthLabel.setText(movie.getGenre() + ", " + Global.getMovieLenghString((int)movie.getLength()));
 
 
         Theater theater = new TheaterBean().getFromTheaterId(order.getTheaterId());
